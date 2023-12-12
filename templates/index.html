@@ -8,12 +8,20 @@
     <title>Games</title>
 </head>
 <body>
-    {% for data in dataList %}
+    {% for data in listPlayers %}
         <div class="container">
             <!-- code here -->
-            <div class="match">
+            <div class="{%if data['status'] != 'SCHEDULED'%}
+                            match-live
+                        {% else %}
+                            match
+                        {% endif %}">
+                
+
                 <div class="match-header">
-                    <div class="match-status">Live</div>
+
+                    <div class="match-status">{{data['status']}}</div>
+
                     <div class="match-tournament"><img src="{{ data['competitionEmblem'] }}" />{{ data['competition'] }}</div>
                     <div class="match-actions">
                         <button class="btn-icon"><i class="material-icons-outlined">grade</i></button>
