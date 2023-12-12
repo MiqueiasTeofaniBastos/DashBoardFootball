@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Games</title>
+</head>
+<body>
+    {% for data in dataList %}
+        <div class="container">
+            <!-- code here -->
+            <div class="match">
+                <div class="match-header">
+                    <div class="match-status">Live</div>
+                    <div class="match-tournament"><img src="{{ data['competitionEmblem'] }}" />{{ data['competition'] }}</div>
+                    <div class="match-actions">
+                        <button class="btn-icon"><i class="material-icons-outlined">grade</i></button>
+                        <button class="btn-icon"><i class="material-icons-outlined">add_alert</i></button>
+                    </div>
+                </div>
+                <div class="match-content">
+                    <div class="column">
+                        <div class="team team--home">
+                            <div class="team-logo">
+                                <img src="{{data.homeTeam.crest}}" />
+                            </div>
+                            <h2 class="team-name">{{data['homeTeam']['shortName']}}</h2>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="match-details">
+                            <div class="match-date">
+                                {{data['date']}}at<strong>{{data['hour']}}</strong>
+                            </div>
+                            <div class="match-score">
+                                <!-- <span class="match-score-number match-score-number--leading">2</span> -->
+                                <span class="match-score-divider">VS</span>
+                                <!-- <span class="match-score-number">0</span> -->
+                            </div>
+                            <!-- <div class="match-time-lapsed">72'</div>
+                            <div class="match-referee">
+                                Referee: <strong>Joseph Hicks</strong>
+                            </div>
+                            <div class="match-bet-options">
+                                <button class="match-bet-option">1.48</button>
+                                <button class="match-bet-option">4.98</button>
+                                <button class="match-bet-option">8.24</button>
+                            </div>
+                            <button class="match-bet-place">Place a bet</button> -->
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="team team--away">
+                            <div class="team-logo">
+                                <img src="{{data['awayTeam']['crest']}}" />
+                            </div>
+                            <h2 class="team-name">{{data['awayTeam']['shortName']}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+    
+    <script src="../static/script.js"></script>
+</body>
+</html>
