@@ -38,10 +38,13 @@ def getNextPlayer(id):
     payload = {} #{'status':['SCHEDULED', 'IN_PLAY']}
     response = requests.post(Url+Version+'teams/'+ id +'/matches',json=payload ,headers=Headers)
     dados = response.json()['matches']
-    dados = list(filter(lambda x: x['status'] == 'SCHEDULED' or x['status'] == 'IN_PLAY' or x['status'] == 'PAUSED', dados))
+    inPlay = list(filter(lambda x: x['status'] == 'IN_PLAY' or x['status'] == 'PAUSED', dados))
+    Scheduled = list(filter(lambda x: x['status'] == 'SCHEDULED', dados))[::5]
+    print(inPlay)
     # Equips = [obj for obj in dados if ('Fortaleza' in obj['shortName']) or ('Corinthians' in obj['shortName'])]
     # EquipsCode = Equips[0]['code']
     # print(json.dumps(dados, indent=4))
+    dados = inPlay+Scheduled
     return dados 
 
 
