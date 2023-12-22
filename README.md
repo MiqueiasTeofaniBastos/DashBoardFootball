@@ -2,7 +2,8 @@
 
 Esse projeto é uma aplicação Flask simples que consome uma API de partidas de futebol e mostra os jogos marcados para o dia atual, junto com o placar dos mesmos.
 
-![Imagem da Aplicação](/static/img/homepage.jpg)
+![Imagem da Aplicação1](/static/img/homepage.jpg)
+![Imagem da Aplicação2](/static/img/homepage2.jpg)
 
 ## Setup
 
