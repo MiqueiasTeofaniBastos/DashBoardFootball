@@ -2,6 +2,8 @@
 
 Esse projeto é uma aplicação Flask simples que consome uma API de partidas de futebol e mostra os jogos marcados para o dia atual, junto com o placar dos mesmos.
 
+![Imagem da Aplicação](/static/img/homepage.jpg)
+
 ## Setup
 
 Para rodar essa aplicação na sua máquina local, siga os passos abaixo:
@@ -48,3 +50,6 @@ Depois de rodar o último comando acima, você deverá ver que o servidor está 
 ## Uso
 
 Abra o navegador e acesse `http://127.0.0.1:5000/` para ver quais jogos estão ocorrendo hoje e o atual placar deles.
+
+
+
