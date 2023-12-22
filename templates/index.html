@@ -18,7 +18,7 @@
     </head>
     <body>
             <div class="preloader">
-            <figure> <img src="../static/img/loader.png" alt="Image"> </figure>
+            <figure> <img src="../static/img/loading.png" alt="Image"> </figure>
             </div>
 
             <!-- Slider -->
@@ -57,11 +57,21 @@
             </header>
             <!--VS Top-->
             
-            {% for data in listMatches %}
             <div class="bosluk5e"></div>
-            <section class="vs-top">
+            <section class="vs-top">   
                 <div class="container">
-                    <div class="or">
+                    <div class="or" style="margin-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="h2-baslik-hizmetler-21 wow fade animated" style="visibility: visible; color: black;">Jogos de Hoje</h2>
+                                <div class="bosluk3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% for data in listMatches %}
+                <div class="container">
+                    <div class="or" style="margin-bottom: 0px;">
                         <div class="row">
                             <div class="com-md-12">
                                 <span class="team-flag">{{data.homeTeam.shortName}}<img src="{{data.homeTeam.crest}}" alt="" width="123" height="123"></span>
@@ -80,14 +90,16 @@
                         <div class="row">
                             <div class="com-md-12">
                                <span class="icon-detail"><i class="flaticon-timetable icon-r"></i>{{data.utcDate}}
-                               <i class="flaticon-add icon-r1"></i>{{data.competition.name}}</span>
+                               <i class="flaticon-add icon-r1"></i>{{data.area.name}} - {{data.competition.name}}</span>
                             </div>
                         </div>
                     </div>
                 </div>    
+            
+            
+            {% endfor %}
             </section>
             <div class="bosluk4pps"></div>
-            {% endfor %}
             
             <!-- Tabs -->
             <!--Upcoming Match Top-->
