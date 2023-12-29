@@ -2,7 +2,7 @@ from datetime import datetime
 
 def format_date(dt_string):
     dt = datetime.strptime(dt_string, "%Y-%m-%dT%H:%M:%SZ")
-    return dt.strftime("%b %d, %Y - %H:%M")
+    return dt
 
 
 class Team:
