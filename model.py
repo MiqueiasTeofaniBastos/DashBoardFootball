@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def format_date(dt_string):
     dt = datetime.strptime(dt_string, "%Y-%m-%dT%H:%M:%SZ")
+    dt = dt - timedelta(hours=3)
     return dt
 
 

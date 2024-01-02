@@ -16,14 +16,17 @@
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
   </head>
   <body>
-    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/static/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div class="ie-panel">
+      <a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/static/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
+      </a>
+    </div>
     <div class="preloader">
       <div class="preloader-body">
         <div class="preloader-item"></div>
       </div>
     </div>
     <!-- Page-->
-    <div class="page"><a class="d-none d-xl-block" href="https://www.templatemonster.com/website-templates/allstar-multi-sports-website-template-63853.html" target="blank"><img class="d-block w-100" src="/static/images/banner-free-01.jpg" alt=""></a>
+    <div class="page">
       <!-- Page Header-->
       <header class="section page-header rd-navbar-dark">
         <!-- RD Navbar-->
@@ -44,20 +47,14 @@
                     <div class="owl-carousel-inline-wrap">
                       <div class="owl-carousel owl-carousel-inline" data-items="1" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="3200" data-stage-padding="0" data-loop="true" data-margin="10" data-mouse-drag="false" data-touch-drag="false" data-nav-custom=".owl-carousel-navbar">
                         <!-- Post Inline-->
+                        {% for data in listMatches %}
+
                         <article class="post-inline">
-                          <time class="post-inline-time" datetime="2020">April 15, 2020</time>
-                          <p class="post-inline-title">Sportland vs Dream Team</p>
+                          <time class="post-inline-time" datetime="2020">{{ data.utcDate.strftime('%b %d, %Y')}}</time>
+                          <p class="post-inline-title">{{data.homeTeam.shortName}} vs {{data.awayTeam.shortName}}</p>
                         </article>
-                        <!-- Post Inline-->
-                        <article class="post-inline">
-                          <time class="post-inline-time" datetime="2020">April 15, 2020</time>
-                          <p class="post-inline-title">Sportland vs Real Madrid</p>
-                        </article>
-                        <!-- Post Inline-->
-                        <article class="post-inline">
-                          <time class="post-inline-time" datetime="2020">April 15, 2020</time>
-                          <p class="post-inline-title">Sportland vs Barcelona</p>
-                        </article>
+
+                        {% endfor %}
                       </div>
                     </div>
                   </div>
@@ -68,8 +65,7 @@
                       <!-- Select 2-->
                       <select class="select select-inline" data-placeholder="Select an option" data-dropdown-class="select-inline-dropdown">
                         <option value="en" selected="">en</option>
-                        <option value="fr">fr</option>
-                        <option value="es">es</option>
+                        <option value="pt-br">pt</option>
                       </select>
                     </li>
                     <li>
@@ -179,10 +175,12 @@
           </nav>
         </div>
       </header>
+
+
       <!-- Swiper-->
       <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
         <div class="swiper-wrapper">
-          <div class="swiper-slide text-center" data-slide-bg="images/slider-1-slide-1-1920x671.jpg">
+          <div class="swiper-slide text-center" data-slide-bg="/static/images/slider-1-slide-1-1920x671.jpg">
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-xl-6">
@@ -194,7 +192,7 @@
               </div>
             </div>
           </div>
-          <div class="swiper-slide" data-slide-bg="images/slider-1-slide-2-1920x671.jpg">
+          <div class="swiper-slide" data-slide-bg="/static/images/slider-1-slide-2-1920x671.jpg">
             <div class="container">
               <div class="row justify-content-end">
                 <div class="col-xl-5">
@@ -206,7 +204,7 @@
               </div>
             </div>
           </div>
-          <div class="swiper-slide" data-slide-bg="images/slider-1-slide-3-1920x671.jpg">
+          <div class="swiper-slide" data-slide-bg="/static/images/slider-1-slide-3-1920x671.jpg">
             <div class="container">
               <div class="row">
                 <div class="col-xl-5">
@@ -246,7 +244,7 @@
                     <p class="game-info-subtitle">Real Stadium - 
                       <time datetime="08:30"> {{ data.utcDate.strftime('%I:%M %p')}}</time>
                     </p>
-                    <h3 class="game-info-title">{{data.competition.name}} - {{data.competition.type}} | {{data.area.name}} {{ data.utcDate.strftime('%Y')}}</h3>
+                    <h3 class="game-info-title">{{data.competition.name}} - {{data.competition.type}} | {{data.area.name}}</h3>
                     <div class="game-info-main">
                       <div class="game-info-team game-info-team-first">
                         <figure><img src="{{data.homeTeam.crest}}" alt="" width="75" height="99"/>
@@ -292,7 +290,7 @@
                     <!-- Heading Component-->
                     <article class="heading-component">
                       <div class="heading-component-inner">
-                        <h5 class="heading-component-title">Latest results
+                        <h5 class="heading-component-title">Live results
                         </h5>
                         <div class="owl-carousel-arrows-outline">
                           <div class="owl-nav">
@@ -303,43 +301,51 @@
                       </div>
                     </article>
                     <!-- Owl Carousel-->
-                    <div class="owl-carousel owl-spacing-1" data-items="1" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="false" data-animation-in="fadeIn" data-animation-out="fadeOut" data-nav-custom=".owl-carousel-outer-navigation-1">
+                    <div class="owl-carousel owl-spacing-1 owl-loaded" data-items="1" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="false" data-animation-in="fadeIn" data-animation-out="fadeOut" data-nav-custom=".owl-carousel-outer-navigation-1">
                       <!-- Game Result Creative-->
-                      {% for data in listMatches %}
-                          <article class="game-result game-result-creative">
-                            <div class="game-result-main-vertical">
-                              <div class="game-result-team game-result-team-horizontal game-result-team-first">
-                                <figure class="game-result-team-figure"><img src="{{data.homeTeam.crest}}" alt="" width="31" height="41"/>
-                                </figure>
-                                <div class="game-result-team-title">
-                                  <div class="game-result-team-name">{{data.homeTeam.shortName}}</div>
-                                  <div class="game-result-team-country">{{data.area.name}}</div>
-                                </div>
-                                <div class="game-result-score game-result-score-big game-result-team-win">{%if data.score.fullTime.home == None %} 0 {%else%} {{data.score.fullTime.home}} <span class="game-result-team-label game-result-team-label-right">LIVE</span>{% endif %}<!--<span class="game-result-team-label game-result-team-label-right">Win</span>-->
-                                </div>
-                              </div><span class="game-result-team-divider">VS</span>
-                              <div class="game-result-team game-result-team-horizontal game-result-team-second">
-                                <figure class="game-result-team-figure"><img src="{{data.awayTeam.crest}}" alt="" width="40" height="32"/>
-                                </figure>
-                                <div class="game-result-team-title">
-                                  <div class="game-result-team-name">{{data.awayTeam.shortName}}</div>
-                                  <div class="game-result-team-country">{{data.area.name}}</div>
-                                </div>
-                                <div class="game-result-score game-result-score-big">{%if data.score.fullTime.away == None %} 0 {%else%} {{data.score.fullTime.away}} <span class="game-result-team-label game-result-team-label-right">LIVE</span>{% endif %}
+                      <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(-1199px, 0px, 0px); transition: all 0s ease 0s; width: 2400px;" >
+                          {% for data in listMatches %}
+                          <div class="owl-item" style="width: 369.984px; margin-right: 30px;">
+                            <article class="game-result game-result-creative">
+                              <div class="game-result-main-vertical">
+                                <div class="game-result-team game-result-team-horizontal game-result-team-first">
+                                  <figure class="game-result-team-figure"><img src="{{data.homeTeam.crest}}" alt="" width="31" height="41"/>
+                                  </figure>
+                                  <div class="game-result-team-title">
+                                    <div class="game-result-team-name">{{data.homeTeam.shortName}}</div>
+                                    <div class="game-result-team-country">{{data.area.name}}</div>
+                                  </div>
+                                  <div class="game-result-score game-result-score-big game-result-team-win">{%if data.score.fullTime.home == None %} 0 {%else%} {{data.score.fullTime.home}} <span class="game-result-team-label game-result-team-label-right">LIVE</span>{% endif %}<!--<span class="game-result-team-label game-result-team-label-right">Win</span>-->
+                                  </div>
+                                </div><span class="game-result-team-divider">VS</span>
+                                <div class="game-result-team game-result-team-horizontal game-result-team-second">
+                                  <figure class="game-result-team-figure"><img src="{{data.awayTeam.crest}}" alt="" width="40" height="32"/>
+                                  </figure>
+                                  <div class="game-result-team-title">
+                                    <div class="game-result-team-name">{{data.awayTeam.shortName}}</div>
+                                    <div class="game-result-team-country">{{data.area.name}}</div>
+                                  </div>
+                                  <div class="game-result-score game-result-score-big">{%if data.score.fullTime.away == None %} 0 {%else%} {{data.score.fullTime.away}} <span class="game-result-team-label game-result-team-label-right">LIVE</span> {% endif %}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="game-result-footer">
-                              <ul class="game-result-details">
-                                <li>{{data.competition.name}}</li>
-                                <li>{{data.competition.type}}</li>
-                                <li>
-                                  <time datetime="2020-04-14">{{ data.utcDate.strftime('%B %d, %Y')}}</time>
-                                </li>
-                              </ul>
-                            </div>
-                          </article>
-                      {% endfor %}
+                              <div class="game-result-footer">
+                                <ul class="game-result-details">
+                                  <li>{{data.competition.name}}</li>
+                                  <li>{{data.competition.type}}</li>
+                                  <li>
+                                    <time datetime="2020-04-14">{{ data.utcDate.strftime('%B %d, %Y')}}</time>
+                                  </li>
+                                </ul>
+                              </div>
+                            </article>
+                          </div>
+                        {% endfor %}
+                        </div>
+                      </div>
+
+
                     </div>
                   </div>
                 </div>
@@ -348,7 +354,9 @@
           </div>
         </div>
       </section>
-      <!-- Page Footer--><a class="d-block" href="https://www.templatemonster.com/website-templates/allstar-multi-sports-website-template-63853.html" target="blank"><img class="d-block w-100" src="/static/images/banner-free-02.jpg" alt=""></a>
+
+
+      <!-- Page Footer-->
       <footer class="section footer-classic footer-classic-dark context-dark">
         <div class="footer-classic-main">
           <div class="container">
