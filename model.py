@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import List
 
 def format_date(dt_string):
     dt = datetime.strptime(dt_string, "%Y-%m-%dT%H:%M:%SZ")
@@ -99,7 +100,30 @@ class SoccerData:
         self.filters = Filter(**filters)
         self.resultSet = ResultSet(**resultSet)
         self.matches = [Match(**x) for x in matches]
+############################################################
+
+class Source:
+    def __init__(self, id: str, name: str):
+        self.id = id
+        self.name = name
 
 
+class Article:
+    def __init__(self, source: Source, author: str, title: str, description: str, url: str, urlToImage: str, publishedAt: str, content: str):
+        self.source = source
+        self.author = author
+        self.title = title
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = format_date(publishedAt)
+        self.content = content
+
+
+class NewsData:
+    def __init__(self, status:str, totalResults:int, articles):
+        self.status = status
+        self.total_results = totalResults
+        self.articles = [Article(**x) for x in articles]
 
 
